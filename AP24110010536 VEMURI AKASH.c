@@ -14,7 +14,6 @@ struct Student {
 char currentRole[10];
 char currentUser[50];
 
-/* Prototypes */
 int loginSystem(void);
 void mainMenu(void);
 
@@ -30,7 +29,6 @@ void updateStudent(void);
 void deleteStudent(void);
 int  isDuplicateRoll(int);
 
-/* ================= MAIN ================= */
 int main(void) {
     if (loginSystem())
         mainMenu();
@@ -40,7 +38,6 @@ int main(void) {
     return 0;
 }
 
-/* ================= LOGIN ================= */
 int loginSystem(void) {
     char username[20], password[20];
     char fu[20], fp[20], fr[10];
@@ -70,7 +67,6 @@ int loginSystem(void) {
     return 0;
 }
 
-/* ================= MAIN MENU ================= */
 void mainMenu(void) {
     if (strcmp(currentRole, "ADMIN") == 0)
         adminMenu();
@@ -82,7 +78,6 @@ void mainMenu(void) {
         guestMenu();
 }
 
-/* ================= ADMIN ================= */
 void adminMenu(void) {
     int ch;
     do {
@@ -101,7 +96,6 @@ void adminMenu(void) {
     } while (ch != 6);
 }
 
-/* ================= STAFF ================= */
 void staffMenu(void) {
     int ch;
     do {
@@ -118,7 +112,6 @@ void staffMenu(void) {
     } while (ch != 4);
 }
 
-/* ================= USER ================= */
 void userMenu(void) {
     int ch, roll, found;
     struct Student st;
@@ -155,15 +148,11 @@ void userMenu(void) {
 
     } while (ch != 2);
 }
-
-/* ================= GUEST ================= */
 void guestMenu(void) {
     printf("\n--- GUEST VIEW (READ ONLY) ---\n");
     displayStudents();
     printf("\nGuest session ended.\n");
 }
-
-/* ================= UTILS ================= */
 int isDuplicateRoll(int roll) {
     struct Student st;
     FILE *fp = fopen(STUDENT_FILE, "r");
@@ -177,8 +166,6 @@ int isDuplicateRoll(int roll) {
     fclose(fp);
     return 0;
 }
-
-/* ================= ADD ================= */
 void addStudent(void) {
     struct Student st;
     FILE *fp = fopen(STUDENT_FILE, "a");
@@ -206,7 +193,6 @@ void addStudent(void) {
     printf("Added successfully!\n");
 }
 
-/* ================= DISPLAY ================= */
 void displayStudents(void) {
     struct Student st;
     FILE *fp = fopen(STUDENT_FILE, "r");
@@ -224,7 +210,6 @@ void displayStudents(void) {
     fclose(fp);
 }
 
-/* ================= SEARCH ================= */
 void searchStudent(void) {
     struct Student st;
     FILE *fp = fopen(STUDENT_FILE, "r");
@@ -250,8 +235,6 @@ void searchStudent(void) {
     if (!found) printf("Not found!\n");
     fclose(fp);
 }
-
-/* ================= UPDATE ================= */
 void updateStudent(void) {
     struct Student st;
     FILE *fp = fopen(STUDENT_FILE, "r");
@@ -281,8 +264,6 @@ void updateStudent(void) {
     if (found) printf("Updated!\n");
     else printf("Not found!\n");
 }
-
-/* ================= DELETE ================= */
 void deleteStudent(void) {
     struct Student st;
     FILE *fp = fopen(STUDENT_FILE, "r");
@@ -308,4 +289,5 @@ void deleteStudent(void) {
 
     if (found) printf("Deleted.\n");
     else printf("Not found.\n");
+
 }
